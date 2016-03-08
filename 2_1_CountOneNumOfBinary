@@ -1,0 +1,48 @@
+package com.BeautyProgram;
+
+/**
+ * Created by qi on 2016/3/8.
+ */
+public class CountNumDemo {
+
+    public static int count1(int num) {
+        int iCount = 0;
+        while (num != 0) {
+            if (num % 2 == 1) {
+                iCount++;
+            }
+            num /= 2;
+        }
+        return iCount;
+    }
+
+    public static int count2(int num) {
+        int iCount = 0;
+        while (num != 0) {
+            iCount += num & 0x01;
+            num >>= 1;
+        }
+        return iCount;
+    }
+
+    public static int count3(int num) {
+        int iCount = 0;
+        while (num != 0) {
+            num &= (num - 1);
+            iCount++;
+        }
+        return iCount;
+    }
+
+    public static int calcDiff(int num1, int num2){
+        System.out.println(Integer.toBinaryString(num1^num2));
+        return count3(num1^num2);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(count1(Integer.parseInt("1011",2)));
+        System.out.println(count2(Integer.parseInt("1011",2)));
+        System.out.println(count3(Integer.parseInt("1011",2)));
+        System.out.println(calcDiff(Integer.parseInt("001111", 2),Integer.parseInt("0100",2)));
+    }
+}
